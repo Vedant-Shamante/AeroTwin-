@@ -1,0 +1,188 @@
+:root {
+  color-scheme: light;
+  --bg: #e9eaec;
+  --surface: #ffffff;
+  --surface-2: #f1f2f4;
+  --surface-3: #d9dde2;
+  --line: rgba(51, 51, 51, .13);
+  --text: #333333;
+  --muted: #68727d;
+  --blue: #0a3c6e;
+  --cyan: #1783c1;
+  --green: #38a98b;
+  --amber: #d89436;
+  --red: #d95770;
+  --shadow: 0 14px 38px rgba(10, 60, 110, .10);
+}
+
+body {
+  background: radial-gradient(ellipse at 86% 0%, rgba(23, 131, 193, .10), transparent 34%),
+    linear-gradient(135deg, #f5f6f7, #e9eaec 70%, #e3e5e8);
+  color: var(--text);
+}
+
+.topbar {
+  background: rgba(248, 251, 255, .88);
+  color: var(--muted);
+}
+
+.topbar-context,
+.topbar-actions,
+.icon-button,
+.clock,
+.live-status,
+.nav-link,
+.component-line span:first-child {
+  color: var(--muted);
+}
+
+.topbar-context b { color: #b4c7dd; }
+
+.brand-mark {
+  background: linear-gradient(145deg, #0a3c6e, #1783c1);
+  color: #ffffff;
+  box-shadow: 0 5px 18px rgba(10, 60, 110, .25);
+}
+
+.sidebar {
+  background: rgba(250, 252, 255, .96);
+}
+
+.nav-label { color: #879bb5; }
+.nav-link:hover { background: #f1f2f4; color: #0a3c6e; }
+.nav-link.active {
+  color: #0a3c6e;
+  background: linear-gradient(90deg, rgba(10, 60, 110, .13), rgba(23, 131, 193, .07));
+  box-shadow: inset 2px 0 #0a3c6e;
+}
+.nav-icon, .nav-link.active .nav-icon { color: #1783c1; }
+
+.fleet-card {
+  background: linear-gradient(145deg, #ffffff, #f1f2f4);
+}
+.user-avatar {
+  background: linear-gradient(145deg, #1783c1, #0a3c6e);
+  color: #ffffff;
+}
+
+.panel {
+  background: #ffffff;
+  border-color: var(--line);
+}
+
+.btn {
+  background: #f1f2f4;
+  color: #0a3c6e;
+}
+.btn:hover { background: #e3e7eb; border-color: rgba(23, 131, 193, .55); }
+.btn-primary {
+  background: linear-gradient(120deg, #0a3c6e, #1783c1);
+  color: #fff;
+}
+.btn-quiet { background: transparent; }
+
+.field-input {
+  background: #f8fbff;
+  color: var(--text);
+}
+
+.aircraft-visual {
+  background: radial-gradient(ellipse at center, rgba(23, 131, 193, .14), transparent 67%),
+    linear-gradient(135deg, #ffffff, #e9eaec);
+}
+.plane-silhouette { color: #1783c1; }
+.health-ring:after { background: #fff; }
+.health-ring { background: conic-gradient(var(--green) 0 91%, #dce8f5 91% 100%); }
+
+.chart-tooltip { background: #fff; }
+.donut { background: conic-gradient(var(--green) 0 67%, var(--amber) 67% 87%, #d6e3f2 87%); }
+
+/* Preserve contrast on the digital-twin canvas while matching the blue palette. */
+.twin-stage {
+  background: radial-gradient(ellipse at 52% 53%, rgba(23, 131, 193, .20), transparent 49%),
+    linear-gradient(180deg, #f1f2f4, #d9dde2);
+}
+.twin-pin {
+  border-color: rgba(10, 60, 110, .35);
+  background: rgba(255, 255, 255, .94);
+  color: #0a3c6e;
+}
+
+.twin-plane {
+  transform: none;
+  animation: none;
+  filter: none;
+  perspective: 1000px;
+}
+.twin-aircraft {
+  width: min(52vw, 470px);
+  height: auto;
+  overflow: visible;
+  transform: rotate(-8deg);
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 16px 12px rgba(10, 60, 110, .22));
+  transition: transform .65s cubic-bezier(.2, .8, .2, 1), filter .35s ease;
+}
+.twin-plane.is-3d .twin-aircraft {
+  transform: perspective(850px) rotateX(58deg) rotateZ(-8deg) scale(.96);
+  filter: drop-shadow(0 28px 15px rgba(10, 60, 110, .30));
+}
+.aircraft-wing, .aircraft-tail {
+  fill: url(#wing-fill);
+  stroke: #0a3c6e;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.aircraft-fuselage {
+  fill: url(#body-fill);
+  stroke: #0a3c6e;
+  stroke-width: 2;
+}
+.aircraft-cockpit {
+  fill: #e8f8ff;
+  stroke: #0a3c6e;
+  stroke-width: 2;
+}
+.aircraft-engine {
+  fill: url(#engine-fill);
+  stroke: #0a3c6e;
+  stroke-width: 2;
+}
+.engine-unit { transition: filter .2s ease, opacity .2s ease; }
+.engine-fan-ring { fill: #eaf8ff; stroke: #0a3c6e; stroke-width: 2; }
+.engine-fan { fill: url(#fan-fill); stroke: #0a3c6e; stroke-width: 1; }
+.engine-fan-blades { fill: #ffffff; opacity: .9; }
+.engine-unit.engine-selected { filter: drop-shadow(0 0 9px rgba(2, 207, 231, .95)); }
+.engine-unit.engine-selected .aircraft-engine { stroke: #02a9d1; stroke-width: 4; }
+.pin-engine { cursor: pointer; font: inherit; }
+.pin-engine-1 { left: 30%; top: 65%; }
+.pin-engine-2 { left: 59%; top: 65%; }
+.pin-engine[aria-pressed="true"] {
+  border-color: #02a9d1;
+  box-shadow: 0 0 0 3px rgba(2, 207, 231, .16);
+}
+.aircraft-detail {
+  fill: none;
+  stroke: rgba(255, 255, 255, .66);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.aircraft-window { fill: #0a3c6e; opacity: .85; }
+.twin-pin { transition: opacity .2s ease; }
+.twin-stage.hide-labels .twin-pin { opacity: 0; pointer-events: none; }
+.twin-stage.thermal-on .aircraft-wing { fill: #e58a48; }
+.twin-stage.thermal-on .aircraft-fuselage { fill: #d95b55; }
+.twin-stage.thermal-on .aircraft-engine { fill: #f28a47; }
+.stage-toolbar .btn[aria-pressed="true"] {
+  border-color: rgba(23, 131, 193, .55);
+  background: #dcecf7;
+  color: #0a3c6e;
+}
+.stage-toolbar .btn {
+  background: rgba(255, 255, 255, .94);
+  color: #0a3c6e;
+}
+
+@media (max-width: 580px) {
+  .twin-aircraft { width: min(76vw, 400px); }
+}

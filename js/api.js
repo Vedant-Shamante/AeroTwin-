@@ -1,0 +1,2 @@
+// Demo data adapter. Replace these methods with authenticated backend requests for production.
+const AeroTwinAPI={async getFleet(){return{aircraft:12,available:10,health:94.8,activeMissions:8,alerts:3}},async getTelemetry(aircraftId='AT-204'){return{aircraftId,receivedAt:new Date().toISOString(),engineTemp:642,oilPressure:48,altitude:35000,airspeed:462}},async getMaintenance(){return[{aircraft:'AT-302',task:'Engine inspection',date:'2026-10-02',status:'Due soon'},{aircraft:'AT-118',task:'Avionics check',date:'2026-10-04',status:'Scheduled'}]}};
